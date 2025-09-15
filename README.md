@@ -1,20 +1,32 @@
-# Calculadora de Edad
+import tkinter as tk
 
-Esta es una pequeña aplicación en Python que permite calcular la edad aproximada de una persona.  
-El usuario ingresa su año de nacimiento y al presionar el botón "Calcular Edad", se muestra su edad usando el año 2025 como referencia.
+def calcular_edad():
+    try:
+        anio_nacimiento = int(entry_anio.get())
+        edad = 2025 - anio_nacimiento
+        label_resultado.config(text=f"Tienes aproximadamente {edad} años.")
+    except ValueError:
+        label_resultado.config(text="Por favor, ingresa un año válido.")
 
-## Requisitos previos
+# Crear ventana principal
+ventana = tk.Tk()
+ventana.title("Calculadora de Edad")
 
-- Tener instalado **Python 3** en la computadora.
-- Tkinter (suele venir incluido con Python 3; si no lo tenés, se puede instalar).
+# Etiqueta: Año de nacimiento
+label_anio = tk.Label(ventana, text="Año de nacimiento:")
+label_anio.grid(row=0, column=0, padx=10, pady=10)
 
-## Instrucciones
+# Caja de texto para ingresar el año
+entry_anio = tk.Entry(ventana)
+entry_anio.grid(row=0, column=1, padx=10, pady=10)
 
-1. Ejecutar el archivo `calculadora_edad.py`.
-2. Ingresar el año de nacimiento.
-3. Presionar el botón "Calcular Edad".
-4. Ver el resultado en la etiqueta de abajo.
+# Botón para calcular edad
+boton_calcular = tk.Button(ventana, text="Calcular Edad", command=calcular_edad)
+boton_calcular.grid(row=1, column=0, columnspan=2, pady=10)
 
-## Tecnologías usadas
-- Python 3
-- Tkinter (interfaz gráfica)
+# Etiqueta para mostrar el resultado
+label_resultado = tk.Label(ventana, text="")
+label_resultado.grid(row=2, column=0, columnspan=2, pady=10)
+
+# Ejecutar la aplicación
+ventana.mainloop()
